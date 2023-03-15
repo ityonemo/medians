@@ -1,6 +1,8 @@
 defmodule MediansWeb.MainPageTest do
   use MediansWeb.ConnCase
 
+  alias Medians.Schools
+
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
 
@@ -9,9 +11,10 @@ defmodule MediansWeb.MainPageTest do
       |> html_response(200)
       |> Floki.parse_document!()
 
-    assert {"option", [{"value", "1"}], ["Yale University"]} in Floki.find(
-             document,
-             "select#school-select option"
-           )
+    schools_list = Floki.find(document,"select#school-select option")
+
+    Enum.each(Schools.all(), fn school ->
+      assert {"option", [{"value", "#{school.id}"}], [school.name]} in schools_list
+    end)
   end
 end
