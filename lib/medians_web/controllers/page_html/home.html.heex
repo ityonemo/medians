@@ -1,8 +1,8 @@
 <.flash_group flash={@flash} />
-<form id="school-form" action="school-info" method="get">
+<%=Phoenix.HTML.Form.form_for %{}, ~p"/schools/", [method: :get, id: "school-form"], fn f -> %>
   <label for="school-select">Select your school</label>
-  <select id="school-select" form="school-form">
-    <option>Yale University</option>
+  <select id="school-select" form="school-form" name="school">
+    <option value="1">Yale University</option>
   </select>
   <input type="submit" id="school-submit" value="view info"/>
-</form>
+<% end %>
