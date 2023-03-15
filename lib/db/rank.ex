@@ -53,4 +53,9 @@ defmodule Db.Rank do
       "can't correctly parse rank content #{inspect(something_else)}"
     )
   end
+
+  defimpl Phoenix.HTML.Safe do
+    def to_iodata(%{tie_high: rank, tie_low: rank}), do: "#{rank}"
+    def to_iodata(%{tie_high: high, tie_low: low}), do: "Tie (#{high}-#{low})"
+  end
 end

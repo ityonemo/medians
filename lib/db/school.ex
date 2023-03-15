@@ -1,8 +1,12 @@
 defmodule Db.School do
   use Ecto.Schema
 
+  alias Db.YearData
+
   schema "schools" do
     field :name, :string
+    has_many(:year_data, YearData)
+
     timestamps()
   end
 

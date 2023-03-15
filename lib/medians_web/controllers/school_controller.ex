@@ -1,7 +1,10 @@
 defmodule MediansWeb.SchoolController do
   use MediansWeb, :controller
 
-  def index(conn, params = %{"school" => _}) do
+  alias Data.Schools
+  alias Plug.Conn
+
+  def index(conn, params = %{"id" => _}) do
     show(conn, params)
   end
 
@@ -9,7 +12,9 @@ defmodule MediansWeb.SchoolController do
     render(conn, :index, layout: false)
   end
 
-  def show(conn, params) do
-    render(conn, :show, layout: false)
+  def show(conn, %{"id" => id}) do
+    conn
+    |> Conn.assign(:school, Schools.get_with_year_data(id))
+    |> render(:show, layout: false)
   end
 end
