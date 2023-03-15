@@ -1,6 +1,8 @@
 defmodule MediansTest.CSVTest do
   use ExUnit.Case, async: true
 
+  alias Data.Sources
+
   @csv_data """
   foo,bar
   1,2
@@ -16,6 +18,6 @@ defmodule MediansTest.CSVTest do
 
   test "the ranking module can pull csv data", %{path: path} do
     assert [%{"foo" => "1", "bar" => "2"}, %{"foo" => "3", "bar" => "4"}] ==
-             Medians.CSV.from_file(path)
+             Sources.CSV.from_file(path)
   end
 end

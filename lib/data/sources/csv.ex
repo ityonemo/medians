@@ -1,4 +1,4 @@
-defmodule Medians.CSV do
+defmodule Data.Sources.CSV do
   def from_file(path, opts \\ []) do
     path =
       if opts[:priv] do
