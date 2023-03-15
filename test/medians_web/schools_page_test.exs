@@ -2,14 +2,21 @@ defmodule MediansWeb.SchoolsPageTest do
   use MediansWeb.ConnCase
 
   alias Data.Schools
-  alias Data.Years
+  alias Data.Ranks
+  alias Data.YearData
 
   setup do
     [%{id: id}] = Schools.insert!(%{"name" => "Canada College"})
 
-    Years.insert!([
-      %{"school_id" => id, "rank" => 1, "year" => 1999, "L75" => 150, "L50" => 175, "L25" => 200},
-      %{"school_id" => id, "rank" => 2, "year" => 2000, "L75" => 150, "L50" => 175, "L25" => 200}
+    [%{id: rank_id_1}, %{id: rank_id_2}] =
+      Ranks.insert!([
+        %{"rank" => 1, "year" => 1999},
+        %{"rank" => 2, "year" => 2000}
+      ])
+
+    YearData.insert!([
+      %{"school_id" => id, "rank_id" => rank_id_1, "L75" => 150, "L50" => 175, "L25" => 200},
+      %{"school_id" => id, "rank_id" => rank_id_2, "L75" => 150, "L50" => 175, "L25" => 200}
     ])
 
     {:ok, id: id}

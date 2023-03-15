@@ -1,0 +1,53 @@
+defmodule DataTest.RanksTest do
+  use Medians.DataCase, async: true
+
+  alias Data.Ranks
+
+  describe "ranks can be inserted" do
+    test "with a single number" do
+      Data.Ranks.insert!(%{"year" => 1999, "rank" => 1})
+
+      assert [%{year: 1999, tie_high: 1, tie_low: 1}] = Data.Ranks.all()
+    end
+
+    test "with a number string" do
+      Data.Ranks.insert!(%{"year" => 1999, "rank" => "1"})
+
+      assert [%{year: 1999, tie_high: 1, tie_low: 1}] = Data.Ranks.all()
+    end
+
+    test "with a range string" do
+      Data.Ranks.insert!(%{"year" => 1999, "rank" => "1-4"})
+
+      assert [%{year: 1999, tie_high: 1, tie_low: 4}] = Data.Ranks.all()
+    end
+
+    test "with same rank, different year" do
+      Data.Ranks.insert!([%{"year" => 1999, "rank" => "1"}, %{"year" => 1998, "rank" => "1"}])
+
+      assert [%{year: 1999, tie_high: 1, tie_low: 1}, %{year: 1998, tie_high: 1, tie_low: 1}] =
+               Data.Ranks.all()
+    end
+
+    test "with overlapping ranks, different year" do
+      Data.Ranks.insert!([%{"year" => 1999, "rank" => "1-5"}, %{"year" => 1998, "rank" => "2-6"}])
+
+      assert [%{year: 1999, tie_high: 1, tie_low: 5}, %{year: 1998, tie_high: 2, tie_low: 6}] =
+               Data.Ranks.all()
+    end
+  end
+
+  describe "you can't add two ranks when" do
+    test "same year, same number" do
+      assert_raise Ecto.ConstraintError, fn ->
+        Data.Ranks.insert!([%{"year" => 1999, "rank" => 1}, %{"year" => 1999, "rank" => 1}])
+      end
+    end
+
+    test "same year, overlapping ranges" do
+      assert_raise Ecto.ConstraintError, fn ->
+        Data.Ranks.insert!([%{"year" => 1999, "rank" => 1}, %{"year" => 1999, "rank" => "1-5"}])
+      end
+    end
+  end
+end
