@@ -1,7 +1,7 @@
 defmodule MediansWeb.MainPageTest do
   use MediansWeb.ConnCase
 
-  alias Medians.Schools
+  alias Data.Schools
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
