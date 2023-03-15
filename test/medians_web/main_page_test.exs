@@ -9,7 +9,7 @@ defmodule MediansWeb.MainPageTest do
       |> html_response(200)
       |> Floki.parse_document!()
 
-    assert {"option", [], ["Yale University"]} in Floki.find(
+    assert {"option", [{"value", "1"}], ["Yale University"]} in Floki.find(
              document,
              "select#school-select option"
            )

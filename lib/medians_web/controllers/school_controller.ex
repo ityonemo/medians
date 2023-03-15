@@ -1,7 +1,7 @@
 defmodule MediansWeb.SchoolController do
   use MediansWeb, :controller
 
-  def index(conn, params(%{"school" => _})) do
+  def index(conn, params = %{"school" => _}) do
     show(conn, params)
   end
 
