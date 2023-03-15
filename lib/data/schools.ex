@@ -22,9 +22,9 @@ defmodule Data.Schools do
     Db.Repo.all(query)
   end
 
-  def insert(school_or_schools) do
+  def insert!(school_or_schools) do
     school_or_schools
     |> List.wrap()
-    |> Enum.map(&Db.Repo.insert(School.changeset(&1)))
+    |> Enum.map(&Db.Repo.insert!(School.changeset(&1)))
   end
 end
