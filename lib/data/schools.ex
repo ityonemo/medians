@@ -13,11 +13,12 @@ defmodule Data.Schools do
   import Ecto.Query
 
   def all(opts \\ []) do
-    query = if sort_key = opts[:sort] do
-      from s in School, order_by: ^sort_key
-    else
-      School
-    end
+    query =
+      if sort_key = opts[:sort] do
+        from s in School, order_by: ^sort_key
+      else
+        School
+      end
 
     Db.Repo.all(query)
   end

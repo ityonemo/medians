@@ -2,7 +2,7 @@
 <%= Phoenix.HTML.Form.form_for %{}, ~p"/schools/", [method: :get, id: "school-form"], fn _f -> %>
   <label for="school-select">Select your school</label>
   <select id="school-select" form="school-form" name="school">
-    <.school_options schools={@schools}/>
+    <.school_options schools={@schools} />
   </select>
   <input type="submit" id="school-submit" value="view info" />
 <% end %>

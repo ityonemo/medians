@@ -3,7 +3,7 @@ defmodule Db.Repo.Migrations.AddSchoolsTable do
 
   def change do
     create table("schools") do
-      add :name,    :string
+      add :name, :string
       timestamps()
     end
   end

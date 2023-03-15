@@ -21,8 +21,9 @@ defmodule MediansWeb.MainPageTest do
 
     schools_list = Floki.find(document, "select#school-select option")
 
-    assert schools_list === (for school <- Schools.all(sort: :id) do
-      {"option", [{"value", "#{school.id}"}], [school.name]}
-    end)
+    assert schools_list ===
+             (for school <- Schools.all(sort: :id) do
+                {"option", [{"value", "#{school.id}"}], [school.name]}
+              end)
   end
 end
