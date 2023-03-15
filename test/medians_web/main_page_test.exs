@@ -4,10 +4,14 @@ defmodule MediansWeb.MainPageTest do
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
 
-    document = conn
-    |> html_response(200)
-    |> Floki.parse_document!
+    document =
+      conn
+      |> html_response(200)
+      |> Floki.parse_document!()
 
-    assert {"option", [], ["Yale University"]} in Floki.find(document, "select#school-select option")
+    assert {"option", [], ["Yale University"]} in Floki.find(
+             document,
+             "select#school-select option"
+           )
   end
 end

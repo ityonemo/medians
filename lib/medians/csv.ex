@@ -1,16 +1,17 @@
 defmodule Medians.CSV do
   def from_file(path, opts \\ []) do
-    path = if opts[:priv] do
-      :medians
-      |> :code.priv_dir
-      |> Path.join(path)
-    else
-      path
-    end
+    path =
+      if opts[:priv] do
+        :medians
+        |> :code.priv_dir()
+        |> Path.join(path)
+      else
+        path
+      end
 
     path
-    |> File.stream!
+    |> File.stream!()
     |> CSV.decode!(headers: true)
-    |> Enum.to_list
+    |> Enum.to_list()
   end
 end

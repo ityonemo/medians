@@ -1,5 +1,8 @@
 <.flash_group flash={@flash} />
-<label for="school-select">Select your school</label>
-<select id="school-select">
-  <option>Yale University</option>
-</select>
+<form id="school-form" action={~p"/school-info"} method="get">
+  <label for="school-select">Select your school</label>
+  <select id="school-select" form="school-form">
+    <option>Yale University</option>
+  </select>
+  <input type="submit" id="school-submit" value="view info"/>
+</form>
