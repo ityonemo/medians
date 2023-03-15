@@ -7,10 +7,10 @@ defmodule MediansWeb.SchoolsPageTest do
   setup do
     [%{id: id}] = Schools.insert!(%{"name" => "Canada College"})
 
-    # Years.insert!([
-    #  %{"school_id" => id, "rank" => 1, "year" => 1999, "L75" => 150, "L50" => 175, "L25" => 200},
-    #  %{"school_id" => id, "rank" => 2, "year" => 2000, "L75" => 150, "L50" => 175, "L25" => 200}
-    # ])
+    Years.insert!([
+      %{"school_id" => id, "rank" => 1, "year" => 1999, "L75" => 150, "L50" => 175, "L25" => 200},
+      %{"school_id" => id, "rank" => 2, "year" => 2000, "L75" => 150, "L50" => 175, "L25" => 200}
+    ])
 
     {:ok, id: id}
   end

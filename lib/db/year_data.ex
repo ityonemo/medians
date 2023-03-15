@@ -2,24 +2,24 @@ defmodule Db.YearData do
   use Ecto.Schema
 
   schema "year_data" do
-    belongs_to :school
-    belongs_to :rank
+    belongs_to(:school, Db.School)
+    belongs_to(:rank, Db.Rank)
 
-    add :L75, :integer
-    add :L50, :integer
-    add :L25, :integer
-    add :G75, :decimal
-    add :G50, :decimal
-    add :G25, :decimal
-    add :gre75v, :integer
-    add :gre50v, :integer
-    add :gre25v, :integer
-    add :gre75q, :integer
-    add :gre50q, :integer
-    add :gre25q, :integer
-    add :gre75w, :decimal
-    add :gre50w, :decimal
-    add :gre25w, :decimal
+    field :L75, :integer
+    field :L50, :integer
+    field :L25, :integer
+    field :G75, :decimal
+    field :G50, :decimal
+    field :G25, :decimal
+    field :gre75v, :integer
+    field :gre50v, :integer
+    field :gre25v, :integer
+    field :gre75q, :integer
+    field :gre50q, :integer
+    field :gre25q, :integer
+    field :gre75w, :decimal
+    field :gre50w, :decimal
+    field :gre25w, :decimal
 
     timestamps()
   end
