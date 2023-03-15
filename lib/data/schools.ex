@@ -7,10 +7,10 @@ defmodule Data.Schools do
   If any caching or PubSub broadcasting were to occur, this would be placed in this
   module, but we don't have any at this time.
 
-  Transformation of csv data 
+  Transformation of csv data
   """
 
-  def all do
+  def all(opts \\ []) do
     []
   end
 end

@@ -11,10 +11,15 @@ defmodule MediansWeb.MainPageTest do
       |> html_response(200)
       |> Floki.parse_document!()
 
-    schools_list = Floki.find(document,"select#school-select option")
+    # note that the structure of Floki's parsed html is `{tag, [attribs], [inner_nodes]}`, therefore
+    # this should naturally sort by school.id using erlang term order
 
-    Enum.each(Schools.all(), fn school ->
-      assert {"option", [{"value", "#{school.id}"}], [school.name]} in schools_list
+    schools_list = document
+    |> Floki.find("select#school-select option")
+    |> Enum.sort
+
+    assert schools_list === (for school <- Schools.all(sort: :id) do
+      {"option", [{"value", "#{school.id}"}], [school.name]}
     end)
   end
 end
