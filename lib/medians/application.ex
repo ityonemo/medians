@@ -11,7 +11,7 @@ defmodule Medians.Application do
       # Start the Telemetry supervisor
       MediansWeb.Telemetry,
       # Start the Ecto repository
-      Medians.Repo,
+      Db.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: Medians.PubSub},
       # Start Finch

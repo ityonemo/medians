@@ -3,6 +3,11 @@ defmodule MediansWeb.MainPageTest do
 
   alias Data.Schools
 
+  setup do
+    Schools.insert([%{"name" => "Canada College"}, %{"name" => "University of the USA"}])
+    :ok
+  end
+
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
 

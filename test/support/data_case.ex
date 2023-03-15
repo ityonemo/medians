@@ -18,7 +18,7 @@ defmodule Medians.DataCase do
 
   using do
     quote do
-      alias Medians.Repo
+      alias Db.Repo
 
       import Ecto
       import Ecto.Changeset
@@ -36,7 +36,7 @@ defmodule Medians.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Medians.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Db.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
   end
 

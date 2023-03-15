@@ -8,7 +8,7 @@
 import Config
 
 config :medians,
-  ecto_repos: [Medians.Repo]
+  ecto_repos: [Db.Repo]
 
 # Configures the endpoint
 config :medians, MediansWeb.Endpoint,

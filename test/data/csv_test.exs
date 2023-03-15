@@ -1,4 +1,4 @@
-defmodule MediansTest.CSVTest do
+defmodule MediansTest.Data.CSVTest do
   use ExUnit.Case, async: true
 
   alias Data.Sources

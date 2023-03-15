@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :medians, Medians.Repo,
+config :medians, Db.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
