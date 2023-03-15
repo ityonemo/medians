@@ -18,5 +18,6 @@ defmodule MediansWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/school-info", SchoolController, :index
   end
 end
