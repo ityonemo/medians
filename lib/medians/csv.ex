@@ -10,17 +10,7 @@ defmodule Medians.CSV do
 
     path
     |> File.stream!
-    |> CSV.decode!
-    |> Enum.reduce(nil, fn
-      header, nil -> {[], header}
-      this_row, {rows, header} ->
-        new_row = header
-        |> Enum.zip(this_row)
-        |> Map.new
-
-        {[new_row | rows], header}
-    end)
-    |> elem(0)
-    |> Enum.reverse
+    |> CSV.decode!(headers: true)
+    |> Enum.to_list
   end
 end
