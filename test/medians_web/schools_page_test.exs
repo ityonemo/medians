@@ -36,16 +36,18 @@ defmodule MediansWeb.SchoolsPageTest do
       |> Enum.map(fn {"th", _, [header]} -> header end)
 
     assert [
-      %{"rank" => "Tie (2-3)", "year" => "2000", "L50" => "175"},
-      %{"rank" => "1", "year" => "1999", "L50" => "180"}
-    ] =
-      document
-      |> Floki.find("table#schools-table tbody tr")
-      |> Enum.map(fn subdocument ->
-        subdocument
-        |> Floki.find("td")
-        |> Enum.zip(headers)
-        |> Map.new(fn {{"td", _, inner_html}, header} -> {header, List.first(inner_html)} end)
-      end)
+             %{"rank" => "Tie (2-3)", "year" => "2000", "L50" => "175"},
+             %{"rank" => "1", "year" => "1999", "L50" => "180"}
+           ] =
+             document
+             |> Floki.find("table#schools-table tbody tr")
+             |> Enum.map(fn subdocument ->
+               subdocument
+               |> Floki.find("td")
+               |> Enum.zip(headers)
+               |> Map.new(fn {{"td", _, inner_html}, header} ->
+                 {header, List.first(inner_html)}
+               end)
+             end)
   end
 end

@@ -26,11 +26,19 @@ defmodule Data.Schools do
   end
 
   def get_with_year_data(id) do
-    # NB: this accessor needs to do a complicated SQL query to ensure that the year information is ordered correctly.
-    # instead of doing a preload, we have to perform the join manually and then stitch the resulting struct together
-    # by substituting the rank result into the rank field directly
+    # NB: this accessor needs to do a complicated SQL query to ensure that the
+    # year information is ordered correctly. instead of doing a preload, we
+    # have to perform the join manually and then stitch the resulting struct
+    # together by substituting the rank result into the rank field directly
 
-    ordered_years = from(y in YearData, join: r in Rank, on: r.id == y.rank_id, order_by: [desc: r.year], select: %{y | rank: r})
+    ordered_years =
+      from(y in YearData,
+        join: r in Rank,
+        on: r.id == y.rank_id,
+        order_by: [desc: r.year],
+        select: %{y | rank: r}
+      )
+
     query = from s in School, where: s.id == ^id, select: s, preload: [year_data: ^ordered_years]
 
     Db.Repo.one(query)
