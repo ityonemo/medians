@@ -1,0 +1,163 @@
+<svg
+  width="200mm"
+  height="100mm"
+  viewBox="0 0 100 100"
+  version="1.1"
+  id="svg5"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
+    <!-- numberline components -->
+    <path
+      style="fill:none;stroke:#000000;stroke-width:1.05833333;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+      d="m 25,50 100, 0"
+      id="numberline"
+    />
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="24"
+      y="52"
+      id="test-min"
+    >
+      <tspan style="text-align:end;text-anchor:end"><%= @stats.min %></tspan>
+    </text>
+
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="126"
+      y="52"
+      id="test-max"
+    >
+      <tspan style="text-align:start;text-anchor:start"><%= @stats.max %></tspan>
+    </text>
+    <!-- all schools, lowest -->
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="25"
+      y="70"
+      id="school-min-label"
+    >
+      <tspan style="text-align:start;text-anchor:start">lowest school</tspan>
+    </text>
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="25"
+      y="76"
+      id="school-min-value"
+    >
+      <tspan style="text-align:start;text-anchor:start">(<%= @stats.low_value %>)</tspan>
+    </text>
+
+    <path
+      style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+      d={"m 45,65 v -5 L #{@stats.low_norm},55 v -5"}
+      id="lowest-path"
+    />
+
+    <circle
+      style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.529167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+      cx="0"
+      cy="50"
+      id="min-stat"
+      r="2"
+      transform={"translate(#{@stats.low_norm}, 0)"}
+    />
+    <!-- all schools, median -->
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="75"
+      y="80"
+      id="school-median-label"
+    >
+      <tspan>median school</tspan>
+    </text>
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="75"
+      y="86"
+      id="school-median-value"
+    >
+      <tspan>(<%= @stats.median_value %>)</tspan>
+    </text>
+
+    <path
+      style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+      d={"m 75,75 v -10 L #{@stats.median_norm},55 v -5"}
+      id="median-path"
+    />
+
+    <circle
+      style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.52916667;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
+      cx="0"
+      cy="50"
+      id="median-stat"
+      r="2"
+      transform={"translate(#{@stats.median_norm},0)"}
+    />
+    <!-- all schools, max -->
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="125"
+      y="70"
+      id="school-max-label"
+    >
+      <tspan style="text-align:end;text-anchor:end">highest school</tspan>
+    </text>
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="125"
+      y="76"
+      id="school-max-value"
+    >
+      <tspan style="text-align:end;text-anchor:end">(<%= @stats.high_value %>)</tspan>
+    </text>
+
+    <path
+      style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+      d={"m 105,65 v -5 L #{@stats.high_norm},55 v -5"}
+      id="highest-path"
+    />
+
+    <circle
+      style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.529167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+      cx="0"
+      cy="50"
+      id="max-stat"
+      r="2"
+      transform={"translate(#{@stats.high_norm}, 0)"}
+    />
+
+    <!-- this school components -->
+    <text
+      style="text-align:left;text-anchor:left;font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="25"
+      y="25"
+    >
+      <tspan><%= @stats.school_name %>: <%= @stats.stat %></tspan>
+    </text>
+    <text
+      style="font-style:normal;font-weight:normal;font-size:6px;text-align:center;text-anchor:middle;stroke-width:0.264583;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x={@stats.school_norm}
+      y="40"
+      id="school-value"
+    >
+      <tspan><%= @stats.school_value %></tspan>
+    </text>
+
+    <path
+      style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+      d={"m 35,26 v 5 L #{@stats.school_norm},45 v 5"}
+      id="school-path"
+    />
+
+    <circle
+      style="fill:#ff0000;fill-rule:evenodd;stroke-width:0.52916667;stroke-miterlimit:4;stroke-dasharray:none;stroke:#000000;stroke-opacity:1"
+      cx="0"
+      cy="50"
+      r="2"
+      transform={"translate(#{@stats.school_norm},0)"}
+      id="school-stat"
+    />
+  </g>
+</svg>
