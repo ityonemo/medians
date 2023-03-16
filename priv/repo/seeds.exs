@@ -43,8 +43,11 @@ defmodule Seeds do
   end
 end
 
+# don't insert seeds in test or prod
 
-__DIR__
-|> Path.join("../seeds/data.csv")
-|> Data.Sources.CSV.from_file!
-|> Enum.each(&Seeds.insert/1)
+if Mix.env() === :dev do
+  __DIR__
+  |> Path.join("../seeds/data.csv")
+  |> Data.Sources.CSV.from_file!
+  |> Enum.each(&Seeds.insert/1)
+end
