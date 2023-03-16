@@ -127,15 +127,23 @@
       r="2"
       transform={"translate(#{@stats.high_norm}, 0)"}
     />
-
     <!-- this school components -->
+    <text
+      style="text-align:left;text-anchor:left;font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="25"
+      y="18"
+    >
+      <tspan><%= @stats.school_name %>: </tspan>
+    </text>
+
     <text
       style="text-align:left;text-anchor:left;font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
       x="25"
       y="25"
     >
-      <tspan><%= @stats.school_name %>: <%= @stats.stat %></tspan>
+      <tspan><%= @stats.stat %></tspan>
     </text>
+
     <text
       style="font-style:normal;font-weight:normal;font-size:6px;text-align:center;text-anchor:middle;stroke-width:0.264583;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
       x={@stats.school_norm}

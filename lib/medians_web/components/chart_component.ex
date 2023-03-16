@@ -45,6 +45,8 @@ defmodule MediansWeb.ChartComponent do
       gre70w: @grew_range
     }
 
+    @translation Db.Fields.translation()
+
     def new(school_name, yeardata, column) do
       school_stat = Map.fetch!(yeardata, column)
       year_stats = YearData.stats_for(yeardata.rank.year, column)
@@ -62,14 +64,11 @@ defmodule MediansWeb.ChartComponent do
         median_value: year_stats.median,
         min: stat_min,
         max: stat_max,
-        stat: column
+        stat: Map.fetch!(@translation, column)
       }
     end
 
     defp normalize(stat, {min, max}) do
-      (stat - min) |> IO.inspect()
-      (max - min) |> IO.inspect()
-
       25 + 100 * (stat - min) / (max - min)
     end
   end
