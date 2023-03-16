@@ -13,23 +13,26 @@ defmodule Data.Sources.YearStatsCache do
 
   def init(_) do
     :ets.new(__MODULE__, [:public, :named_table])
+    # this process exists solely to own the ets table, it should never
+    # receive messages so we can hibernate forever and the BEAM will basically
+    # forget that it exists when prioritizing processes
     {:ok, [], :hibernate}
   end
 
   use MatchSpec
 
-  defmatchspecp fetch_spec(school_id, year, row) do
-    {{^school_id, ^year, ^row}, stats} -> stats
+  defmatchspecp fetch_spec(year, row) do
+    {{^year, ^row}, stats} -> stats
   end
 
-  def store(tag = {_school_id, _year, _row}, stats = %{max: _, min: _, median: _}) do
+  def store(tag = {_year, _row}, stats = %{max: _, min: _, median: _}) do
     :ets.insert(__MODULE__, {tag, stats})
-    :ok
+    stats
   end
 
-  @spec fetch({term, integer, atom}) :: %{max: term, min: term, median: term}
-  def fetch({school_id, year, row}) do
-    case :ets.select(__MODULE__, fetch_spec(school_id, year, row)) do
+  @spec fetch({integer, atom}) :: %{max: term, min: term, median: term}
+  def fetch({year, row}) do
+    case :ets.select(__MODULE__, fetch_spec(year, row)) do
       [] -> :error
       [stats] -> {:ok, stats}
     end

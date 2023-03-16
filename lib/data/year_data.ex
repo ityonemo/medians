@@ -8,6 +8,8 @@ defmodule Data.YearData do
   module, but we don't have any at this time.
   """
 
+  alias Data.Sources.YearStatsCache
+  alias Db.Rank
   alias Db.YearData
   import Ecto.Query
 
@@ -21,7 +23,32 @@ defmodule Data.YearData do
   Since this contains a (possibly expensive) postgres query and is unlikely to
   change, ever, we cache it locally.
   """
-  def stats_for(year) do
-    
+  def stats_for(year, column) do
+    case YearStatsCache.fetch({year, column}) do
+      {:ok, cached} ->
+        cached
+
+      :error ->
+        column = to_string(column)
+
+        query =
+          from y in YearData,
+            inner_join: r in Rank,
+            on: y.rank_id == r.id and r.year == ^year,
+            select: %{
+              min: fragment("min(?)", literal(^column)),
+              median:
+                fragment(
+                  ~s|percentile_disc(0.5) WITHIN GROUP (ORDER BY ?.?)|,
+                  y,
+                  literal(^column)
+                ),
+              max: fragment("max(?)", literal(^column))
+            }
+
+        result = Db.Repo.one(query)
+
+        YearStatsCache.store({year, column}, result)
+    end
   end
 end
