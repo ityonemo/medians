@@ -36,13 +36,13 @@ defmodule MediansWeb.ChartComponent do
       G75: @gpa_range,
       gre25v: @gre_range,
       gre50v: @gre_range,
-      gre70v: @gre_range,
+      gre75v: @gre_range,
       gre25q: @gre_range,
       gre50q: @gre_range,
-      gre70q: @gre_range,
+      gre75q: @gre_range,
       gre25w: @grew_range,
       gre50w: @grew_range,
-      gre70w: @grew_range
+      gre75w: @grew_range
     }
 
     @translation Db.Fields.translation()
@@ -68,8 +68,14 @@ defmodule MediansWeb.ChartComponent do
       }
     end
 
-    defp normalize(stat, {min, max}) do
+    defp normalize(stat, {min, max}) when is_number(stat) do
       25 + 100 * (stat - min) / (max - min)
+    end
+
+    defp normalize(stat = %Decimal{}, {min, max}) do
+      min = Decimal.from_float(min)
+      max = Decimal.from_float(max)
+      Decimal.add(25, Decimal.mult(100, Decimal.div(Decimal.sub(stat, min), Decimal.sub(max, min))))
     end
   end
 end

@@ -8,6 +8,6 @@ defmodule MediansWeb.PageController do
   def home(conn, _params) do
     conn
     |> Conn.assign(:schools, Schools.all())
-    |> render(:home, layout: false)
+    |> render(:home)
   end
 end

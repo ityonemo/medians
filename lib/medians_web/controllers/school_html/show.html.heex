@@ -1,11 +1,22 @@
 <.flash_group flash={@flash} />
-<MediansWeb.ChartComponent.chart stats={@stats} />
-<h2>School</h2>
+
+<div class="grid grid-cols-2">
+  <div>
+    <h2 class="text-3xl"><%= @school.name %></h2>
+    <MediansWeb.BlurbComponent.summary data={@school} column={@column} />
+  </div>
+  <div class="grid justify-items-right" style="width: 100%;">
+    <MediansWeb.ChartComponent.chart stats={@stats} />
+  </div>
+</div>
+
+<h3 class="text-xl">Full Data</h3>
+
 <table id="schools-table">
   <thead>
-    <tr id="year-header"><.school_headers /></tr>
+    <.school_headers />
   </thead>
   <tbody>
-    <.school_data year_data={@school.year_data} />
+    <.school_data year_data={@school.year_data} school={@school}/>
   </tbody>
 </table>

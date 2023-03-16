@@ -43,7 +43,7 @@ defmodule Db.Fields do
 
   def class, do: @class
 
-  @slice %{
+  @slices %{
     L75: "75th percentile",
     L50: "median",
     L25: "25th percentile",
@@ -61,5 +61,5 @@ defmodule Db.Fields do
     gre25w: "25th percentile"
   }
 
-  def slice, do: @slice
+  def slices, do: @slices
 end
