@@ -41,7 +41,7 @@ defmodule MediansWeb.SchoolsPageTest do
     assert [
              %{"rank" => "Tie (2-3)", "year" => "2000", "L50" => "175"},
              %{"rank" => "1", "year" => "1999", "L50" => "180"},
-             %{"rank" => "(Unranked)", "year" => "1998"}
+             %{"rank" => "Unranked", "year" => "1998"}
            ] =
              document
              |> Floki.find("table#schools-table tbody tr")

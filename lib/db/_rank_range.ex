@@ -17,6 +17,8 @@ defmodule Db.RankRange do
 
   def embed_as(_), do: :self
 
+  def cast("Unranked"), do: {:ok, nil}
+
   def cast(rank_string) when is_binary(rank_string) do
     with {high, "-" <> rest} <- Integer.parse(rank_string),
          {low, ""} <- Integer.parse(rest),

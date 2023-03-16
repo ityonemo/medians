@@ -12,6 +12,8 @@ defmodule Medians.Application do
       MediansWeb.Telemetry,
       # Start the Ecto repository
       Db.Repo,
+      # Start the year stats cache.
+      Data.Sources.YearStatsCache,
       # Start the PubSub system
       {Phoenix.PubSub, name: Medians.PubSub},
       # Start Finch
