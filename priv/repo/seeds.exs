@@ -14,10 +14,9 @@ defmodule Seeds do
     row
     |> Map.merge(%{"school_id" => school_id, "rank_id" => rank_id})
     |> Data.YearData.insert!()
-
   rescue
     error ->
-      IO.warn("error inserting row: (#{Exception.message(error)}) #{inspect row}")
+      IO.warn("error inserting row: (#{Exception.message(error)}) #{inspect(row)}")
   end
 
   defp ensure_school!(name) do
@@ -25,8 +24,8 @@ defmodule Seeds do
       id
     else
       %{"name" => name}
-      |> Schools.insert!
-      |> List.first
+      |> Schools.insert!()
+      |> List.first()
       |> Map.get(:id)
     end
   end
@@ -36,8 +35,8 @@ defmodule Seeds do
       id
     else
       %{"year" => year, "rank" => rank}
-      |> Ranks.insert!
-      |> List.first
+      |> Ranks.insert!()
+      |> List.first()
       |> Map.get(:id)
     end
   end
@@ -48,6 +47,6 @@ end
 if Mix.env() === :dev do
   __DIR__
   |> Path.join("../seeds/data.csv")
-  |> Data.Sources.CSV.from_file!
+  |> Data.Sources.CSV.from_file!()
   |> Enum.each(&Seeds.insert/1)
 end

@@ -8,15 +8,18 @@ defmodule MediansWeb.SchoolsPageTest do
   setup do
     [%{id: id}] = Schools.insert!(%{"name" => "Canada College"})
 
-    [%{id: rank_id_1}, %{id: rank_id_2}] =
+    [%{id: rank_id_1}, %{id: rank_id_2}, %{id: rank_id_3}] =
       Ranks.insert!([
         %{"rank" => 1, "year" => 1999},
-        %{"rank" => "2-3", "year" => 2000}
+        %{"rank" => "2-3", "year" => 2000},
+        # unranked for 1998
+        %{"year" => 1998}
       ])
 
     YearData.insert!([
       %{"school_id" => id, "rank_id" => rank_id_1, "L75" => 155, "L50" => 180, "L25" => 205},
-      %{"school_id" => id, "rank_id" => rank_id_2, "L75" => 150, "L50" => 175, "L25" => 200}
+      %{"school_id" => id, "rank_id" => rank_id_2, "L75" => 150, "L50" => 175, "L25" => 200},
+      %{"school_id" => id, "rank_id" => rank_id_3, "L75" => 150, "L50" => 175, "L25" => 200}
     ])
 
     {:ok, id: id}
@@ -37,7 +40,8 @@ defmodule MediansWeb.SchoolsPageTest do
 
     assert [
              %{"rank" => "Tie (2-3)", "year" => "2000", "L50" => "175"},
-             %{"rank" => "1", "year" => "1999", "L50" => "180"}
+             %{"rank" => "1", "year" => "1999", "L50" => "180"},
+             %{"rank" => "(Unranked)", "year" => "1998"}
            ] =
              document
              |> Floki.find("table#schools-table tbody tr")
