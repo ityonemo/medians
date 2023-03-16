@@ -44,6 +44,10 @@ defmodule Data.Schools do
     Db.Repo.one(query)
   end
 
+  def id_by_name(name) do
+    Db.Repo.one(from s in School, where: s.name == ^name, select: s.id)
+  end
+
   def insert!(school_or_schools) do
     school_or_schools
     |> List.wrap()

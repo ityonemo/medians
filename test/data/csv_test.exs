@@ -18,6 +18,6 @@ defmodule MediansTest.Data.CSVTest do
 
   test "the ranking module can pull csv data", %{path: path} do
     assert [%{"foo" => "1", "bar" => "2"}, %{"foo" => "3", "bar" => "4"}] ==
-             Sources.CSV.from_file(path)
+             Sources.CSV.from_file!(path)
   end
 end
