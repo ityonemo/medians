@@ -25,6 +25,7 @@ defmodule MediansWeb.SchoolController do
     |> Conn.assign(:school, school)
     |> Conn.assign(:stats, Stats.new(school.name, year_data, column))
     |> Conn.assign(:column, column)
+    |> Conn.assign(:year_data, year_data)
     |> render(:show)
   end
 

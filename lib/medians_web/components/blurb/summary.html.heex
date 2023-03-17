@@ -1,7 +1,7 @@
-<% head_year = hd(@data.year_data) %> In the year <%= head_year.rank.year %>, <%= @data.name %>
-<%= if rank = head_year.rank do %>
+In the year <%= @year_data.rank.year %>, <%= @school_name %>
+<%= if rank = @year_data.rank do %>
   ranked <%= ordinal(rank) %>,
 <% else %>
   was unranked,
 <% end %>
-and had a <%= translation(@column) %> of <%= Map.fetch!(head_year, @column) %>.
+and had a <%= translation(@column) %> of <%= Map.fetch!(@year_data, @column) %>.

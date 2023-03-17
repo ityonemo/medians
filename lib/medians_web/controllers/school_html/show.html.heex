@@ -3,7 +3,7 @@
 <div class="grid grid-cols-2">
   <div>
     <h2 class="text-3xl"><%= @school.name %></h2>
-    <MediansWeb.BlurbComponent.summary data={@school} column={@column} />
+    <MediansWeb.BlurbComponent.summary school_name={@school.name} column={@column} year_data={@year_data} />
   </div>
   <div class="grid justify-items-right" style="width: 100%;">
     <MediansWeb.ChartComponent.chart stats={@stats} />
