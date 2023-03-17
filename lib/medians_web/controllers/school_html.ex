@@ -43,7 +43,11 @@ defmodule MediansWeb.SchoolHTML do
     <tr :for={year_data <- @year_data}>
       <td><%= year_data.rank.year %></td>
       <td><%= year_data.rank %></td>
-      <td :for={header <- @headers}><a href={~p|/schools/#{@school.id}/?year=#{year_data.rank.year}&column=#{header}|}><%= Map.fetch!(year_data, header) %></a></td>
+      <td :for={header <- @headers}>
+        <a href={~p|/schools/#{@school.id}/?year=#{year_data.rank.year}&column=#{header}|}>
+          <%= Map.fetch!(year_data, header) %>
+        </a>
+      </td>
     </tr>
     """
   end

@@ -33,25 +33,28 @@ defmodule MediansWeb.SchoolsPageTest do
       |> html_response(200)
       |> Floki.parse_document!()
 
-    headers =
-      document
-      |> Floki.find("table#schools-table th")
-      |> Enum.map(fn {"th", _, [header]} -> header end)
-
     assert [
-             %{"rank" => "Tie (2-3)", "year" => "2000", "L50" => "175"},
-             %{"rank" => "1", "year" => "1999", "L50" => "180"},
-             %{"rank" => "Unranked", "year" => "1998"}
+             %{"rank" => "Tie (2-3)", "year" => "2000", "L50" => {"175", ref1}},
+             %{"rank" => "1", "year" => "1999", "L50" => {"180", ref2}},
+             %{"rank" => "Unranked", "year" => "1998", "L75" => {"150", ref3}}
            ] =
              document
              |> Floki.find("table#schools-table tbody tr")
              |> Enum.map(fn subdocument ->
                subdocument
                |> Floki.find("td")
-               |> Enum.zip(headers)
-               |> Map.new(fn {{"td", _, inner_html}, header} ->
-                 {header, List.first(inner_html)}
+               |> Enum.zip(["year", "rank", "L75", "L50"])
+               |> Map.new(fn
+                 {{"td", _, [{"a", [{"href", ref}], [inner_html]}]}, header} ->
+                   {header, {inner_html, ref}}
+
+                 {{"td", _, [inner_html]}, header} ->
+                   {header, inner_html}
                end)
              end)
+
+    assert ref1 == "/schools/#{id}/?year=2000&column=L50"
+    assert ref2 == "/schools/#{id}/?year=1999&column=L50"
+    assert ref3 == "/schools/#{id}/?year=1998&column=L75"
   end
 end

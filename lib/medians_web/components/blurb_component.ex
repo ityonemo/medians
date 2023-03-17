@@ -21,6 +21,7 @@ defmodule MediansWeb.BlurbComponent do
 
   defp ordinal(%{rank: number..other}) do
     other_count = other - number
+
     case number do
       number when rem(number, 10) === 1 ->
         "Tied for #{number}st with #{other_count} other schools"

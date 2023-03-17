@@ -75,7 +75,11 @@ defmodule MediansWeb.ChartComponent do
     defp normalize(stat = %Decimal{}, {min, max}) do
       min = Decimal.from_float(min)
       max = Decimal.from_float(max)
-      Decimal.add(25, Decimal.mult(100, Decimal.div(Decimal.sub(stat, min), Decimal.sub(max, min))))
+
+      Decimal.add(
+        25,
+        Decimal.mult(100, Decimal.div(Decimal.sub(stat, min), Decimal.sub(max, min)))
+      )
     end
   end
 end
