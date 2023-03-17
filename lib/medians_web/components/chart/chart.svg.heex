@@ -8,6 +8,14 @@
   xmlns:svg="http://www.w3.org/2000/svg"
 >
   <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
+    <!-- title -->
+    <text
+      style="text-align:left;text-anchor:left;font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+      x="25"
+      y="18"
+    >
+      <tspan><%= @stats.stat %>:</tspan>
+    </text>
     <!-- numberline components -->
     <path
       style="fill:none;stroke:#000000;stroke-width:1.05833333;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
@@ -131,17 +139,9 @@
     <text
       style="text-align:left;text-anchor:left;font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
       x="25"
-      y="18"
-    >
-      <tspan><%= @stats.school_name %>:</tspan>
-    </text>
-
-    <text
-      style="text-align:left;text-anchor:left;font-style:normal;font-weight:normal;font-size:6px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-      x="25"
       y="25"
     >
-      <tspan><%= @stats.stat %></tspan>
+      <tspan><%= @stats.school_name %></tspan>
     </text>
 
     <text
