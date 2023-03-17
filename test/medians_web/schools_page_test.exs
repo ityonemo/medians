@@ -46,7 +46,7 @@ defmodule MediansWeb.SchoolsPageTest do
                |> Enum.zip(["year", "rank", "L75", "L50"])
                |> Map.new(fn
                  {{"td", _, [{"a", [{"href", ref}], [inner_html]}]}, header} ->
-                   {header, {inner_html, ref}}
+                   {header, {String.trim(inner_html), ref}}
 
                  {{"td", _, [inner_html]}, header} ->
                    {header, inner_html}

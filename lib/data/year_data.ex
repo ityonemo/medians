@@ -29,21 +29,18 @@ defmodule Data.YearData do
         cached
 
       :error ->
-        column = to_string(column)
-
         query =
           from y in YearData,
             inner_join: r in Rank,
             on: y.rank_id == r.id and r.year == ^year,
             select: %{
-              min: fragment("min(?)", literal(^column)),
+              min: min(field(y, ^column)),
               median:
                 fragment(
-                  ~s|percentile_disc(0.5) WITHIN GROUP (ORDER BY ?.?)|,
-                  y,
-                  literal(^column)
+                  ~s|percentile_disc(0.5) WITHIN GROUP (ORDER BY ?)|,
+                  field(y, ^column)
                 ),
-              max: fragment("max(?)", literal(^column))
+              max: max(field(y, ^column))
             }
 
         result = Db.Repo.one(query)
