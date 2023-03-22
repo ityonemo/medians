@@ -4,7 +4,7 @@ IMPORTANT: PLEASE READ THIS END-USER LICENSE AGREEMENT ("EULA") CAREFULLY. BY US
 
 1. LICENSE
 
-1.1. Subject to the terms and conditions of this EULA, Isaac Yonemoto ("Licensor") hereby grants to you ("Licensee") a non-exclusive, non-transferable, revocable, worldwide, royalty-free license to use the "Medians" software and associated documentation (collectively, the "Software") for commercial purposes, execpt for "incomplete redistribution" purposes as set forth in Section 1.2 below.  For non-commercial
+1.1. Subject to the terms and conditions of this EULA, Isaac Yonemoto ("Licensor") hereby grants to you ("Licensee") a non-exclusive, non-transferable, revocable, worldwide, royalty-free license to use the "Medians" software and associated documentation (collectively, the "Software") for commercial purposes, except for "incomplete redistribution" purposes as set forth in Section 1.2 below.  For non-commercial
 purposes, refer to the non-commercial license
 
 1.2. In the event the Licensee uses the Software for "incomplete redistribution" purposes, whether directly or indirectly, the Licensee agrees to remit to the Licensor a fee of twelve million United States dollars (USD 12,000,000) for such use. The fee shall be due within thirty (30) days from the date of commencement of such "incomplete redistribution" use.
